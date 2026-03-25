@@ -1,125 +1,130 @@
+import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+from logging_monitoring.logger import setup_logger
+
+logger = setup_logger("eda")
 
 # ============================================================
-#  EDA — Build Merged DataFrame for Analysis
+# BUILD ANALYSIS DATAFRAME
 # ============================================================
 
 def build_analysis_df(datasets):
-    """Merge all tables into one flat DataFrame for EDA."""
+    logger.info("Building analysis dataframe...")
+
     df = datasets["Billing"].copy()
-    df = df.merge(datasets["Appointments"][['appointment_id','patient_id','doctor_id','appointment_date','status','reason_for_visit']],
-                  on=['patient_id'], how='left')
-    df = df.merge(datasets["Doctors"][['doctor_id','first_name','last_name','specialization']].rename(
-                      columns={'first_name':'doctor_first_name','last_name':'doctor_last_name'}),
-                  on='doctor_id', how='left')
-    df = df.merge(datasets["Patients"][['patient_id','first_name','last_name']].rename(
-                      columns={'first_name':'patient_first_name','last_name':'patient_last_name'}),
-                  on='patient_id', how='left')
-    df = df.merge(datasets["Treatments"][['treatment_id','treatment_date','treatment_type']],
-                  on='treatment_id', how='left')
+
+    df = df.merge(
+        datasets["Appointments"][[
+            'appointment_id','patient_id','doctor_id',
+            'appointment_date','status','reason_for_visit'
+        ]],
+        on='patient_id', how='left'
+    )
+
+    df = df.merge(
+        datasets["Doctors"][['doctor_id','first_name','last_name','specialization']]
+        .rename(columns={
+            'first_name':'doctor_first_name',
+            'last_name':'doctor_last_name'
+        }),
+        on='doctor_id', how='left'
+    )
+
+    df = df.merge(
+        datasets["Patients"][['patient_id','first_name','last_name']]
+        .rename(columns={
+            'first_name':'patient_first_name',
+            'last_name':'patient_last_name'
+        }),
+        on='patient_id', how='left'
+    )
+
+    df = df.merge(
+        datasets["Treatments"][['treatment_id','treatment_date','treatment_type']],
+        on='treatment_id', how='left'
+    )
+
     df['month'] = pd.to_datetime(df['bill_date']).dt.to_period('M')
+
+    logger.info(f"Analysis dataframe created: {len(df)} rows")
+
     return df
 
+
 # ============================================================
-#  EDA — Line Charts
+# PLOTS
 # ============================================================
 
 def plot_revenue_trend(df):
     revenue_trend = df.groupby('month')['amount'].sum().reset_index()
-    plt.figure(figsize=(10, 5))
-    plt.plot(revenue_trend['month'].astype(str), revenue_trend['amount'], marker='o')
+
+    plt.figure()
+    plt.plot(revenue_trend['month'].astype(str), revenue_trend['amount'])
+    plt.title('Revenue Trend')
     plt.xticks(rotation=45)
-    plt.title('Hospital Revenue Trend Over Time')
-    plt.xlabel('Month')
-    plt.ylabel('Revenue')
-    plt.tight_layout()
     plt.show()
+
 
 def plot_appointments_per_month(df):
-    appointments_per_month = df.groupby(
-        df['appointment_date'].dt.to_period('M'))['appointment_id'].nunique().reset_index()
-    appointments_per_month.rename(columns={'appointment_id': 'num_appointments'}, inplace=True)
-    plt.figure(figsize=(10, 5))
-    plt.plot(appointments_per_month['appointment_date'].astype(str),
-             appointments_per_month['num_appointments'], marker='o')
+    appt = df.groupby(
+        df['appointment_date'].dt.to_period('M')
+    )['appointment_id'].nunique().reset_index()
+
+    plt.figure()
+    plt.plot(appt['appointment_date'].astype(str), appt['appointment_id'])
+    plt.title('Appointments per Month')
     plt.xticks(rotation=45)
-    plt.title('Number of Appointments Per Month')
-    plt.xlabel('Month')
-    plt.ylabel('Number of Appointments')
-    plt.tight_layout()
     plt.show()
+
 
 def plot_treatment_volume(df):
-    treatment_volume_month = df.groupby(
-        df['treatment_date'].dt.to_period('M'))['treatment_id'].nunique().reset_index()
-    treatment_volume_month.rename(columns={'treatment_id': 'num_treatments'}, inplace=True)
-    plt.figure(figsize=(10, 5))
-    plt.plot(treatment_volume_month['treatment_date'].astype(str),
-             treatment_volume_month['num_treatments'], marker='o', color='orange')
+    treat = df.groupby(
+        df['treatment_date'].dt.to_period('M')
+    )['treatment_id'].nunique().reset_index()
+
+    plt.figure()
+    plt.plot(treat['treatment_date'].astype(str), treat['treatment_id'])
+    plt.title('Treatment Volume')
     plt.xticks(rotation=45)
-    plt.title('Treatment Volume Over Time (Monthly)')
-    plt.xlabel('Month')
-    plt.ylabel('Number of Treatments')
-    plt.tight_layout()
     plt.show()
 
-# ============================================================
-#  EDA — Bar Charts
-# ============================================================
 
 def plot_top_doctors_by_revenue(df):
-    doctor_revenue = df.groupby(['doctor_first_name', 'doctor_last_name'])['amount'].sum().reset_index()
-    doctor_revenue['doctor_name'] = doctor_revenue['doctor_first_name'] + " " + doctor_revenue['doctor_last_name']
-    doctor_revenue = doctor_revenue.sort_values('amount', ascending=False).head(10)
-    plt.figure(figsize=(10, 5))
-    sns.barplot(x='amount', y='doctor_name', data=doctor_revenue)
-    plt.title('Top 10 Doctors by Revenue')
-    plt.xlabel('Revenue')
-    plt.ylabel('Doctor')
-    plt.tight_layout()
+    doctor_rev = df.groupby(
+        ['doctor_first_name','doctor_last_name']
+    )['amount'].sum().reset_index()
+
+    doctor_rev['doctor_name'] = (
+        doctor_rev['doctor_first_name'] + " " + doctor_rev['doctor_last_name']
+    )
+
+    doctor_rev = doctor_rev.sort_values('amount', ascending=False).head(10)
+
+    plt.figure()
+    sns.barplot(x='amount', y='doctor_name', data=doctor_rev)
+    plt.title('Top Doctors by Revenue')
     plt.show()
 
-def plot_top_patients_by_ltv(df):
-    patient_revenue = df.groupby(['patient_first_name', 'patient_last_name'])['amount'].sum().reset_index()
-    patient_revenue['patient_name'] = patient_revenue['patient_first_name'] + " " + patient_revenue['patient_last_name']
-    patient_revenue = patient_revenue.sort_values('amount', ascending=False).head(10)
-    plt.figure(figsize=(10, 5))
-    sns.barplot(x='amount', y='patient_name', data=patient_revenue)
-    plt.title('Top 10 Patients by Lifetime Value (LTV)')
-    plt.xlabel('Amount Spent')
-    plt.ylabel('Patient')
-    plt.tight_layout()
-    plt.show()
-
-def plot_appointments_by_specialization(df):
-    appointments_by_specialization = df.groupby('specialization')['appointment_id'].nunique().reset_index()
-    appointments_by_specialization.rename(columns={'appointment_id': 'num_appointments'}, inplace=True)
-    appointments_by_specialization = appointments_by_specialization.sort_values('num_appointments', ascending=False)
-    plt.figure(figsize=(12, 6))
-    sns.barplot(x='num_appointments', y='specialization',
-                data=appointments_by_specialization, palette='viridis')
-    plt.title('Number of Appointments by Doctor Specialization')
-    plt.xlabel('Number of Appointments')
-    plt.ylabel('Specialization')
-    plt.tight_layout()
-    plt.show()
 
 # ============================================================
-#  EDA — Run All Plots
+# MAIN EDA FUNCTION
 # ============================================================
 
 def run_eda(datasets):
-    print("\n--- Running EDA ---")
-    df = build_analysis_df(datasets)
+    summary = {}
 
-    # Line Charts
-    plot_revenue_trend(df)
-    plot_appointments_per_month(df)
-    plot_treatment_volume(df)
+    for name, df in datasets.items():
+        summary[name] = {
+            "rows": df.shape[0],
+            "cols": df.shape[1],
+            "missing": df.isnull().sum().to_dict(),
+            "describe": df.describe().to_dict()
+        }
 
-    # Bar Charts
-    plot_top_doctors_by_revenue(df)
-    plot_top_patients_by_ltv(df)
-    plot_appointments_by_specialization(df)
+    logger.info("EDA complete!")
+    return summary
+    
 
-    print(" EDA complete!")
+    
