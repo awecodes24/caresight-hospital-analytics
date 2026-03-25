@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from extractor import df_appoint, df_bill, df_doctors, df_patient, df_treatment
+from logging_monitoring.logger import  setup_logger
 
 sns.set(style="whitegrid")
 
@@ -106,9 +107,9 @@ def drop_remaining_nulls(datasets):
         before = len(datasets[name])
         datasets[name] = datasets[name].dropna()
         after = len(datasets[name])
-        logger.warning(f"{name}: Dropped {before - after} rows")
+        setup_logger.warning(f"{name}: Dropped {before - after} rows")
 
-    logger.info("Transformation complete!")
+    setup_logger.info("Transformation complete!")
     for name, df in datasets.items():
         total_nulls = df.isnull().sum().sum()
         status = "✅ Clean" if total_nulls == 0 else f"⚠️  {total_nulls} nulls remain"
@@ -256,7 +257,7 @@ def main():
     print("\n--- Dropping Remaining Nulls ---")
     drop_remaining_nulls(datasets)
 
-    null_check_after(datasets)
+    # null_check_after(datasets)
     print("\n Transform complete!")
 
     # ← EDA runs right after null check
