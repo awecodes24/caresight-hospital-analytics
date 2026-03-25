@@ -6,12 +6,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 import pandas as pd
 import sqlalchemy as sa
+from pathlib import Path
 
+# ============================================================
 # ============================================================
 #  CONFIGURATION — Base Path
-# ============================================================
-
-BASE_PATH = r"/home/abhinash-yadav/Documents/III.i/advanced_py_code/ETL project/hospital_etl_datasources"
+BASE_PATH = Path(__file__).resolve().parent
+BASE_PATH = BASE_PATH / "hospital_etl_datasources"
 
 # ============================================================
 #  EXTRACT — Load CSV Files
@@ -75,7 +76,7 @@ def main():
     shape(datasets)
     columns_dtypes(datasets)
 
-    print("\n✅ Extraction complete!")
+    print("\n Extraction complete!")
     return df_appoint, df_bill, df_doctors, df_patient, df_treatment
 
 # ── Module-level exports so `from extractor import ...` works ──────────────────
