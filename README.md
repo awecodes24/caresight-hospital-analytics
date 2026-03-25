@@ -133,3 +133,6 @@ def _connect(self):
 | Bed occupancy rate | ≤ 85% |
 | Readmission rate | ≤ 10% |
 | Patient satisfaction | ≥ 4.0 / 5.0 |
+
+
+.
