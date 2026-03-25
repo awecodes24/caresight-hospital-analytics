@@ -14,7 +14,7 @@ try:
 except ImportError:
     pass
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 
 
@@ -29,6 +29,6 @@ class DatabaseConfig:
     @property
     def url(self) -> str:
         return (
-            f"postgresql://{self.user}:{self.password}"
+            f"postgresql+psycopg2://{self.user}:{self.password}"
             f"@{self.host}:{self.port}/{self.name}"
         )
