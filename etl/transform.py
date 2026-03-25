@@ -1,8 +1,11 @@
+import sys
+import os
+
+# ── Make project root importable ───────────────────────────────────────────────
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import pandas as pd
 from extractor import df_appoint, df_bill, df_doctors, df_patient, df_treatment
-from logging_monitoring.logger import  setup_logger
-
-sns.set(style="whitegrid")
 
 # ============================================================
 #  DATASETS — Dictionary of All Tables
@@ -27,9 +30,11 @@ def null_check_before(datasets):
 
 # ============================================================
 #  TRANSFORM — Fix Data Types FIRST
+#  (must run before fill so coerced NaNs are caught by fill)
 # ============================================================
 
 def fix_dtypes(datasets):
+    # --- Appointments ---
     df = datasets["Appointments"]
     df['appointment_date'] = pd.to_datetime(df['appointment_date'], errors='coerce')
     df['appointment_time'] = pd.to_datetime(
@@ -37,19 +42,23 @@ def fix_dtypes(datasets):
         format='mixed', errors='coerce'
     ).dt.time
 
+    # --- Billing ---
     df = datasets["Billing"]
     df['bill_date'] = pd.to_datetime(df['bill_date'], errors='coerce')
     df['amount']    = pd.to_numeric(df['amount'], errors='coerce')
 
+    # --- Doctors ---
     df = datasets["Doctors"]
     df['phone_number']     = pd.to_numeric(df['phone_number'], errors='coerce')
     df['years_experience'] = pd.to_numeric(df['years_experience'], errors='coerce')
 
+    # --- Patients ---
     df = datasets["Patients"]
     df['date_of_birth']     = pd.to_datetime(df['date_of_birth'], errors='coerce')
     df['registration_date'] = pd.to_datetime(df['registration_date'], errors='coerce')
     df['contact_number']    = pd.to_numeric(df['contact_number'], errors='coerce')
 
+    # --- Treatments ---
     df = datasets["Treatments"]
     df['cost']           = pd.to_numeric(df['cost'], errors='coerce')
     df['treatment_date'] = pd.to_datetime(df['treatment_date'], errors='coerce')
@@ -97,22 +106,28 @@ def fill_treatments(df):
     return df
 
 # ============================================================
-#  NULL CHECK — After Transform
+#  DROP — Remove any rows that still have nulls
 # ============================================================
 
 def drop_remaining_nulls(datasets):
     for name in ["Appointments", "Billing"]:
         before = len(datasets[name])
         datasets[name] = datasets[name].dropna()
-        after = len(datasets[name])
-        setup_logger.warning(f"{name}: Dropped {before - after} rows")
+        after  = len(datasets[name])
+        dropped = before - after
+        if dropped > 0:
+            print(f"  {name:<15} dropped {dropped} unfillable rows → {after} rows remain")
 
-    setup_logger.info("Transformation complete!")
+# ============================================================
+#  NULL CHECK — After Transform
+# ============================================================
+
+def null_check_after(datasets):
+    print("\n--- Null Check After Transform ---")
     for name, df in datasets.items():
         total_nulls = df.isnull().sum().sum()
         status = "✅ Clean" if total_nulls == 0 else f"⚠️  {total_nulls} nulls remain"
         print(f"  {name:<15} {status}")
-
 
 # ============================================================
 #  MAIN — Run All Steps
@@ -121,21 +136,22 @@ def drop_remaining_nulls(datasets):
 def main():
     null_check_before(datasets)
 
+    # 1. Fix dtypes first so coerced NaNs are created before filling
     fix_dtypes(datasets)
 
+    # 2. Fill all NaNs
     datasets["Appointments"] = fill_appointments(datasets["Appointments"])
     datasets["Billing"]      = fill_billing(datasets["Billing"])
     datasets["Doctors"]      = fill_doctors(datasets["Doctors"])
     datasets["Patients"]     = fill_patients(datasets["Patients"])
     datasets["Treatments"]   = fill_treatments(datasets["Treatments"])
 
+    # 3. Drop any rows that still couldn't be filled
     print("\n--- Dropping Remaining Nulls ---")
     drop_remaining_nulls(datasets)
 
-    # null_check_after(datasets)
-    print("\n Transform complete!")
-
-    # ← EDA runs right after null check
-    run_eda(datasets)
+    # 4. Final null check
+    null_check_after(datasets)
+    print("\n✅ Transform complete!")
 
 main()

@@ -2,5 +2,10 @@ Question/
 venv/
 __pycache__/
 etl.log
+<<<<<<< HEAD
 logs/
 
+=======
+.env
+caresight.db
+>>>>>>> bca7a64 (optimized transform)
