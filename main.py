@@ -9,12 +9,12 @@ def test_connection():
             cursor.execute("SELECT current_database(), current_user;")
             db, user = cursor.fetchone()
             
-            print(f"✅ Connected to DB: {db} as user: {user}")
+            print(f" Connected to DB: {db} as user: {user}")
         
         conn.close()
         
     except Exception as e:
-        print("❌ Connection failed:", e)
+        print("Connection failed:", e)
 
 if __name__ == "__main__":
     test_connection()
