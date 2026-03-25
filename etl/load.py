@@ -1,11 +1,17 @@
-from transform import *
+import sys
+import os
+
+# ── Make project root importable (must be BEFORE any project imports) ──────────
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import pandas as pd
+from transform import datasets          # datasets dict built at module level
 from db.connection import get_connection
 
 # ============================================================
 #  TABLE MAP — DataFrame → PostgreSQL Table Name
 # ============================================================
 
-# Maps dataset name → exact table name in your PostgreSQL schema
 TABLE_MAP = {
     "Appointments" : "appointments",
     "Billing"      : "bills",
@@ -25,14 +31,14 @@ def load_data(datasets):
     for name, df in datasets.items():
         table_name = TABLE_MAP[name]
         df.to_sql(
-            name      = table_name,   # table name in PostgreSQL
-            con       = engine,       # PostgreSQL engine
-            if_exists = "append",     # append to existing table (schema already created)
-            index     = False         # don't write DataFrame index as a column
+            name      = table_name,
+            con       = engine,
+            if_exists = "replace",
+            index     = False
         )
         print(f"  {name:<15}  Loaded → '{table_name}' ({len(df)} rows)")
 
-    print("\n Load complete!")
+    print("\n✅ Load complete!")
     return engine
 
 # ============================================================

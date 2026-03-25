@@ -1,4 +1,4 @@
-# 🏥 Hospital Analytics Pipeline
+# 🏥 Hospital Analytics Pipeline Project
 
 An end-to-end automated analytics pipeline for a hospital organisation, covering data ingestion, ETL, warehousing, scheduling, monitoring, and report generation.
 

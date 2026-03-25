@@ -1,3 +1,9 @@
+import sys
+import os
+
+# ── Make project root importable ───────────────────────────────────────────────
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import pandas as pd
 import sqlalchemy as sa
 
@@ -5,18 +11,18 @@ import sqlalchemy as sa
 #  CONFIGURATION — Base Path
 # ============================================================
 
-BASE_PATH = r"C:\Users\ACER\Downloads\hospital_etl_datasources"
+BASE_PATH = r"/home/abhinash-yadav/Documents/III.i/advanced_py_code/ETL project/hospital_etl_datasources"
 
 # ============================================================
 #  EXTRACT — Load CSV Files
 # ============================================================
 
 def load_data():
-    df_appoint   = pd.read_csv(f"{BASE_PATH}\\appointments_etl.csv")
-    df_bill      = pd.read_csv(f"{BASE_PATH}\\billing_etl.csv")
-    df_doctors   = pd.read_csv(f"{BASE_PATH}\\doctors_etl.csv")
-    df_patient   = pd.read_csv(f"{BASE_PATH}\\patients_etl.csv")
-    df_treatment = pd.read_csv(f"{BASE_PATH}\\treatments_etl.csv")
+    df_appoint   = pd.read_csv(f"{BASE_PATH}/appointments_etl.csv")
+    df_bill      = pd.read_csv(f"{BASE_PATH}/billing_etl.csv")
+    df_doctors   = pd.read_csv(f"{BASE_PATH}/doctors_etl.csv")
+    df_patient   = pd.read_csv(f"{BASE_PATH}/patients_etl.csv")
+    df_treatment = pd.read_csv(f"{BASE_PATH}/treatments_etl.csv")
     return df_appoint, df_bill, df_doctors, df_patient, df_treatment
 
 # ============================================================
@@ -69,7 +75,8 @@ def main():
     shape(datasets)
     columns_dtypes(datasets)
 
-    print("\n Extraction complete!")
+    print("\n✅ Extraction complete!")
     return df_appoint, df_bill, df_doctors, df_patient, df_treatment
 
+# ── Module-level exports so `from extractor import ...` works ──────────────────
 df_appoint, df_bill, df_doctors, df_patient, df_treatment = main()
