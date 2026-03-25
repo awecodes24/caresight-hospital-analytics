@@ -1,10 +1,28 @@
-from transform import main as transform
-from load import load_data, verify_load
+from etl.extractor import extract_data
+from etl.transform import transform_data
+from etl.load import load_data as load_to_db, verify_load
+
+from logging_monitoring.logger import log_section, setup_logger
+
+logger = setup_logger("main")
+
 
 def main():
-    datasets = transform()
-    engine = load_data(datasets)
-    verify_load(engine, datasets)
+    log_section(logger, "PIPELINE START")
+
+    # Extract
+    datasets = extract_data()
+
+    # Transform
+    datasets = transform_data(datasets)
+
+    # Load
+    engine = load_to_db(datasets)
+
+    # Verify
+    verify_load(engine)
+
+    log_section(logger, "PIPELINE COMPLETE")
 
 if __name__ == "__main__":
     main()

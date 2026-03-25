@@ -1,4 +1,5 @@
 Question/
 venv/
 __pycache__/
+etl.log
 

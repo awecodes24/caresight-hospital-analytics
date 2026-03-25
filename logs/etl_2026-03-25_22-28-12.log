@@ -1,0 +1,382 @@
+2026-03-25 22:28:12 | INFO     | [SCHEDULER   ] | Scheduler started. Press Ctrl+C to stop.
+2026-03-25 22:28:22 | INFO     | [SCHEDULER   ] | === ETL job starting ===
+2026-03-25 22:28:22 | INFO     | [SCHEDULER   ] | START TIME: Wed Mar 25 22:28:22 2026
+2026-03-25 22:28:22 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [MAIN        ] | [PIPELINE START]
+2026-03-25 22:28:22 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | [EXTRACT]
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | Starting data extraction from CSV sources...
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | Appointments: 5030 rows
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | Billing: 5030 rows
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | Doctors: 50 rows
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | Patients: 5025 rows
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | Treatments: 5025 rows
+2026-03-25 22:28:22 | INFO     | [EXTRACT     ] | All CSV files loaded successfully
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | [TRANSFORM]
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Starting transformation process...
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Appointments: 5030 rows (pre-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Billing: 5030 rows (pre-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (pre-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (pre-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (pre-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Fixing data types...
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Filling missing values...
+2026-03-25 22:28:22 | WARNING  | [TRANSFORM   ] | Dropping remaining nulls...
+2026-03-25 22:28:22 | WARNING  | [TRANSFORM   ] | Appointments: Dropped 444 rows
+2026-03-25 22:28:22 | WARNING  | [TRANSFORM   ] | Billing: Dropped 808 rows
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Transformation complete!
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Appointments: 4586 rows (post-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Billing: 4222 rows (post-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (post-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (post-transform)
+2026-03-25 22:28:22 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (post-transform)
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | [LOAD]
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Starting data load into database...
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Database engine ready: Engine(sqlite:///C:\Users\VICTUS-HP\OneDrive\Documents\fifth_sem\Advance_python_for_datascience\caresight-hospital-analytics\caresight.db)
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Loading Appointments -> appointments (4586 rows)
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Appointments -> 'appointments' loaded
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Loading Billing -> bills (4222 rows)
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Billing -> 'bills' loaded
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Loading Doctors -> doctors (50 rows)
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Doctors -> 'doctors' loaded
+2026-03-25 22:28:22 | INFO     | [LOAD        ] | Loading Patients -> patients (5025 rows)
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Patients -> 'patients' loaded
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Loading Treatments -> treatments (5025 rows)
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Treatments -> 'treatments' loaded
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Load complete!
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | [VERIFY]
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Verifying loaded data...
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Appointments preview:
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | appointment_id patient_id doctor_id           appointment_date appointment_time reason_for_visit    status
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |           A001       P034      D009 2023-08-09 00:00:00.000000  15:15:00.000000          Therapy Scheduled
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |           A002       P032      D004 2023-06-09 00:00:00.000000  14:30:00.000000          Therapy   No-Show
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |           A003       P048      D004 2023-06-28 00:00:00.000000  08:00:00.000000     Consultation Cancelled
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |           A004       P025      D006 2023-09-01 00:00:00.000000  09:15:00.000000     Consultation Cancelled
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |           A005       P040      D003 2023-07-06 00:00:00.000000  12:45:00.000000        Emergency   Unknown
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Billing preview:
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | bill_id patient_id treatment_id                  bill_date  amount payment_method payment_status
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |    B001       P034         T001 2023-08-09 00:00:00.000000 3941.97      Insurance        Pending
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |    B002       P032         T002 2023-06-09 00:00:00.000000 4158.44      Insurance           Paid
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |    B003       P048         T003 2023-06-28 00:00:00.000000 3731.55      Insurance           Paid
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |    B004       P025         T004 2023-09-01 00:00:00.000000 4799.86      Insurance         Failed
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |    B005       P040         T005 2023-07-06 00:00:00.000000  582.05    Credit Card        Pending
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Doctors preview:
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | doctor_id first_name last_name specialization  phone_number  years_experience   hospital_branch                        email
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |      D001      David    Taylor    dermatology  8322010158.0              17.0   Westside Clinic dr.david.taylor@hospital.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |      D002       Jane     Davis     Pediatrics  9004382050.0              24.0   Eastside Clinic   dr.jane.davis@hospital.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |      D003       Jane     Smith     Pediatrics  8737740598.0              19.0   Eastside Clinic   dr.jane.smith@hospital.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |      D004      David     Jones     pediatrics           NaN              19.0  Central Hospital  dr.david.jones@hospital.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |      D005      Sarah    Taylor    Dermatology  9118538547.0              26.0  Central Hospital dr.sarah.taylor@hospital.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Patients preview:
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | patient_id first_name last_name  gender              date_of_birth  contact_number      address          registration_date insurance_provider insurance_number                    email
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |       P001      David  Williams       F 1955-06-04 00:00:00.000000    6939585183.0  789 Pine Rd 2022-06-23 00:00:00.000000       WellnessCorp        INS840674  david.williams@mail.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |       P002      Emily     Smith       f 1984-10-12 00:00:00.000000    8228188767.0 321 Maple Dr 2022-01-15 00:00:00.000000        PulseSecure        INS354079     emily.smith@mail.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |       P003      Laura     Jones       M 1977-08-21 00:00:00.000000    8397029847.0 321 Maple Dr 2022-02-07 00:00:00.000000        PulseSecure        INS650929     laura.jones@mail.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |       P004    Michael   Johnson       F 1981-02-20 00:00:00.000000    9019443432.0   123 Elm St 2021-03-02 00:00:00.000000        HealthIndia        INS789944 michael.johnson@mail.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |       P005      David    Wilson Unknown 1960-06-23 00:00:00.000000    7734463155.0   123 Elm St 2021-09-29 00:00:00.000000       MedCare Plus        INS788105    david.wilson@mail.com
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | Treatments preview:
+2026-03-25 22:28:23 | INFO     | [LOAD        ] | treatment_id appointment_id treatment_type        description    cost             treatment_date
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |         T001           A001   Chemotherapy    Basic screening 3941.97 2023-08-09 00:00:00.000000
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |         T002           A002            MRI  Advanced protocol 4158.44 2023-06-09 00:00:00.000000
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |         T003           A003            MRI Standard procedure 3731.55 2023-06-28 00:00:00.000000
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |         T004           A004            MRI    Basic screening 4799.86 2023-09-01 00:00:00.000000
+2026-03-25 22:28:23 | INFO     | [LOAD        ] |         T005           A005            ECG Standard procedure  582.05 2023-07-06 00:00:00.000000
+2026-03-25 22:28:23 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:23 | INFO     | [MAIN        ] | [PIPELINE COMPLETE]
+2026-03-25 22:28:23 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:23 | INFO     | [SCHEDULER   ] | END TIME: Wed Mar 25 22:28:23 2026
+2026-03-25 22:28:23 | INFO     | [SCHEDULER   ] | === ETL job complete ===
+2026-03-25 22:28:32 | INFO     | [SCHEDULER   ] | === ETL job starting ===
+2026-03-25 22:28:32 | INFO     | [SCHEDULER   ] | START TIME: Wed Mar 25 22:28:32 2026
+2026-03-25 22:28:32 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [MAIN        ] | [PIPELINE START]
+2026-03-25 22:28:32 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | [EXTRACT]
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | Starting data extraction from CSV sources...
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | Appointments: 5030 rows
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | Billing: 5030 rows
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | Doctors: 50 rows
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | Patients: 5025 rows
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | Treatments: 5025 rows
+2026-03-25 22:28:32 | INFO     | [EXTRACT     ] | All CSV files loaded successfully
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | [TRANSFORM]
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Starting transformation process...
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Appointments: 5030 rows (pre-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Billing: 5030 rows (pre-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (pre-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (pre-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (pre-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Fixing data types...
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Filling missing values...
+2026-03-25 22:28:32 | WARNING  | [TRANSFORM   ] | Dropping remaining nulls...
+2026-03-25 22:28:32 | WARNING  | [TRANSFORM   ] | Appointments: Dropped 444 rows
+2026-03-25 22:28:32 | WARNING  | [TRANSFORM   ] | Billing: Dropped 808 rows
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Transformation complete!
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Appointments: 4586 rows (post-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Billing: 4222 rows (post-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (post-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (post-transform)
+2026-03-25 22:28:32 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (post-transform)
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | [LOAD]
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Starting data load into database...
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Database engine ready: Engine(sqlite:///C:\Users\VICTUS-HP\OneDrive\Documents\fifth_sem\Advance_python_for_datascience\caresight-hospital-analytics\caresight.db)
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Loading Appointments -> appointments (4586 rows)
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Appointments -> 'appointments' loaded
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Loading Billing -> bills (4222 rows)
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Billing -> 'bills' loaded
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Loading Doctors -> doctors (50 rows)
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Doctors -> 'doctors' loaded
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Loading Patients -> patients (5025 rows)
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Patients -> 'patients' loaded
+2026-03-25 22:28:32 | INFO     | [LOAD        ] | Loading Treatments -> treatments (5025 rows)
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Treatments -> 'treatments' loaded
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Load complete!
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | [VERIFY]
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Verifying loaded data...
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Appointments preview:
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | appointment_id patient_id doctor_id           appointment_date appointment_time reason_for_visit    status
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |           A001       P034      D009 2023-08-09 00:00:00.000000  15:15:00.000000          Therapy Scheduled
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |           A002       P032      D004 2023-06-09 00:00:00.000000  14:30:00.000000          Therapy   No-Show
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |           A003       P048      D004 2023-06-28 00:00:00.000000  08:00:00.000000     Consultation Cancelled
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |           A004       P025      D006 2023-09-01 00:00:00.000000  09:15:00.000000     Consultation Cancelled
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |           A005       P040      D003 2023-07-06 00:00:00.000000  12:45:00.000000        Emergency   Unknown
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Billing preview:
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | bill_id patient_id treatment_id                  bill_date  amount payment_method payment_status
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |    B001       P034         T001 2023-08-09 00:00:00.000000 3941.97      Insurance        Pending
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |    B002       P032         T002 2023-06-09 00:00:00.000000 4158.44      Insurance           Paid
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |    B003       P048         T003 2023-06-28 00:00:00.000000 3731.55      Insurance           Paid
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |    B004       P025         T004 2023-09-01 00:00:00.000000 4799.86      Insurance         Failed
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |    B005       P040         T005 2023-07-06 00:00:00.000000  582.05    Credit Card        Pending
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Doctors preview:
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | doctor_id first_name last_name specialization  phone_number  years_experience   hospital_branch                        email
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |      D001      David    Taylor    dermatology  8322010158.0              17.0   Westside Clinic dr.david.taylor@hospital.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |      D002       Jane     Davis     Pediatrics  9004382050.0              24.0   Eastside Clinic   dr.jane.davis@hospital.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |      D003       Jane     Smith     Pediatrics  8737740598.0              19.0   Eastside Clinic   dr.jane.smith@hospital.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |      D004      David     Jones     pediatrics           NaN              19.0  Central Hospital  dr.david.jones@hospital.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |      D005      Sarah    Taylor    Dermatology  9118538547.0              26.0  Central Hospital dr.sarah.taylor@hospital.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Patients preview:
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | patient_id first_name last_name  gender              date_of_birth  contact_number      address          registration_date insurance_provider insurance_number                    email
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |       P001      David  Williams       F 1955-06-04 00:00:00.000000    6939585183.0  789 Pine Rd 2022-06-23 00:00:00.000000       WellnessCorp        INS840674  david.williams@mail.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |       P002      Emily     Smith       f 1984-10-12 00:00:00.000000    8228188767.0 321 Maple Dr 2022-01-15 00:00:00.000000        PulseSecure        INS354079     emily.smith@mail.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |       P003      Laura     Jones       M 1977-08-21 00:00:00.000000    8397029847.0 321 Maple Dr 2022-02-07 00:00:00.000000        PulseSecure        INS650929     laura.jones@mail.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |       P004    Michael   Johnson       F 1981-02-20 00:00:00.000000    9019443432.0   123 Elm St 2021-03-02 00:00:00.000000        HealthIndia        INS789944 michael.johnson@mail.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |       P005      David    Wilson Unknown 1960-06-23 00:00:00.000000    7734463155.0   123 Elm St 2021-09-29 00:00:00.000000       MedCare Plus        INS788105    david.wilson@mail.com
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | Treatments preview:
+2026-03-25 22:28:33 | INFO     | [LOAD        ] | treatment_id appointment_id treatment_type        description    cost             treatment_date
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |         T001           A001   Chemotherapy    Basic screening 3941.97 2023-08-09 00:00:00.000000
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |         T002           A002            MRI  Advanced protocol 4158.44 2023-06-09 00:00:00.000000
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |         T003           A003            MRI Standard procedure 3731.55 2023-06-28 00:00:00.000000
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |         T004           A004            MRI    Basic screening 4799.86 2023-09-01 00:00:00.000000
+2026-03-25 22:28:33 | INFO     | [LOAD        ] |         T005           A005            ECG Standard procedure  582.05 2023-07-06 00:00:00.000000
+2026-03-25 22:28:33 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:33 | INFO     | [MAIN        ] | [PIPELINE COMPLETE]
+2026-03-25 22:28:33 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:33 | INFO     | [SCHEDULER   ] | END TIME: Wed Mar 25 22:28:33 2026
+2026-03-25 22:28:33 | INFO     | [SCHEDULER   ] | === ETL job complete ===
+2026-03-25 22:28:42 | INFO     | [SCHEDULER   ] | === ETL job starting ===
+2026-03-25 22:28:42 | INFO     | [SCHEDULER   ] | START TIME: Wed Mar 25 22:28:42 2026
+2026-03-25 22:28:42 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [MAIN        ] | [PIPELINE START]
+2026-03-25 22:28:42 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | [EXTRACT]
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | Starting data extraction from CSV sources...
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | Appointments: 5030 rows
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | Billing: 5030 rows
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | Doctors: 50 rows
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | Patients: 5025 rows
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | Treatments: 5025 rows
+2026-03-25 22:28:42 | INFO     | [EXTRACT     ] | All CSV files loaded successfully
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | [TRANSFORM]
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Starting transformation process...
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Appointments: 5030 rows (pre-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Billing: 5030 rows (pre-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (pre-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (pre-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (pre-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Fixing data types...
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Filling missing values...
+2026-03-25 22:28:42 | WARNING  | [TRANSFORM   ] | Dropping remaining nulls...
+2026-03-25 22:28:42 | WARNING  | [TRANSFORM   ] | Appointments: Dropped 444 rows
+2026-03-25 22:28:42 | WARNING  | [TRANSFORM   ] | Billing: Dropped 808 rows
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Transformation complete!
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Appointments: 4586 rows (post-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Billing: 4222 rows (post-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (post-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (post-transform)
+2026-03-25 22:28:42 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (post-transform)
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | [LOAD]
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Starting data load into database...
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Database engine ready: Engine(sqlite:///C:\Users\VICTUS-HP\OneDrive\Documents\fifth_sem\Advance_python_for_datascience\caresight-hospital-analytics\caresight.db)
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Loading Appointments -> appointments (4586 rows)
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Appointments -> 'appointments' loaded
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Loading Billing -> bills (4222 rows)
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Billing -> 'bills' loaded
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Loading Doctors -> doctors (50 rows)
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Doctors -> 'doctors' loaded
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Loading Patients -> patients (5025 rows)
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Patients -> 'patients' loaded
+2026-03-25 22:28:42 | INFO     | [LOAD        ] | Loading Treatments -> treatments (5025 rows)
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Treatments -> 'treatments' loaded
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Load complete!
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | [VERIFY]
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Verifying loaded data...
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Appointments preview:
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | appointment_id patient_id doctor_id           appointment_date appointment_time reason_for_visit    status
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |           A001       P034      D009 2023-08-09 00:00:00.000000  15:15:00.000000          Therapy Scheduled
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |           A002       P032      D004 2023-06-09 00:00:00.000000  14:30:00.000000          Therapy   No-Show
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |           A003       P048      D004 2023-06-28 00:00:00.000000  08:00:00.000000     Consultation Cancelled
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |           A004       P025      D006 2023-09-01 00:00:00.000000  09:15:00.000000     Consultation Cancelled
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |           A005       P040      D003 2023-07-06 00:00:00.000000  12:45:00.000000        Emergency   Unknown
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Billing preview:
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | bill_id patient_id treatment_id                  bill_date  amount payment_method payment_status
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |    B001       P034         T001 2023-08-09 00:00:00.000000 3941.97      Insurance        Pending
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |    B002       P032         T002 2023-06-09 00:00:00.000000 4158.44      Insurance           Paid
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |    B003       P048         T003 2023-06-28 00:00:00.000000 3731.55      Insurance           Paid
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |    B004       P025         T004 2023-09-01 00:00:00.000000 4799.86      Insurance         Failed
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |    B005       P040         T005 2023-07-06 00:00:00.000000  582.05    Credit Card        Pending
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Doctors preview:
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | doctor_id first_name last_name specialization  phone_number  years_experience   hospital_branch                        email
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |      D001      David    Taylor    dermatology  8322010158.0              17.0   Westside Clinic dr.david.taylor@hospital.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |      D002       Jane     Davis     Pediatrics  9004382050.0              24.0   Eastside Clinic   dr.jane.davis@hospital.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |      D003       Jane     Smith     Pediatrics  8737740598.0              19.0   Eastside Clinic   dr.jane.smith@hospital.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |      D004      David     Jones     pediatrics           NaN              19.0  Central Hospital  dr.david.jones@hospital.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |      D005      Sarah    Taylor    Dermatology  9118538547.0              26.0  Central Hospital dr.sarah.taylor@hospital.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Patients preview:
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | patient_id first_name last_name  gender              date_of_birth  contact_number      address          registration_date insurance_provider insurance_number                    email
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |       P001      David  Williams       F 1955-06-04 00:00:00.000000    6939585183.0  789 Pine Rd 2022-06-23 00:00:00.000000       WellnessCorp        INS840674  david.williams@mail.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |       P002      Emily     Smith       f 1984-10-12 00:00:00.000000    8228188767.0 321 Maple Dr 2022-01-15 00:00:00.000000        PulseSecure        INS354079     emily.smith@mail.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |       P003      Laura     Jones       M 1977-08-21 00:00:00.000000    8397029847.0 321 Maple Dr 2022-02-07 00:00:00.000000        PulseSecure        INS650929     laura.jones@mail.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |       P004    Michael   Johnson       F 1981-02-20 00:00:00.000000    9019443432.0   123 Elm St 2021-03-02 00:00:00.000000        HealthIndia        INS789944 michael.johnson@mail.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |       P005      David    Wilson Unknown 1960-06-23 00:00:00.000000    7734463155.0   123 Elm St 2021-09-29 00:00:00.000000       MedCare Plus        INS788105    david.wilson@mail.com
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | Treatments preview:
+2026-03-25 22:28:43 | INFO     | [LOAD        ] | treatment_id appointment_id treatment_type        description    cost             treatment_date
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |         T001           A001   Chemotherapy    Basic screening 3941.97 2023-08-09 00:00:00.000000
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |         T002           A002            MRI  Advanced protocol 4158.44 2023-06-09 00:00:00.000000
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |         T003           A003            MRI Standard procedure 3731.55 2023-06-28 00:00:00.000000
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |         T004           A004            MRI    Basic screening 4799.86 2023-09-01 00:00:00.000000
+2026-03-25 22:28:43 | INFO     | [LOAD        ] |         T005           A005            ECG Standard procedure  582.05 2023-07-06 00:00:00.000000
+2026-03-25 22:28:43 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:43 | INFO     | [MAIN        ] | [PIPELINE COMPLETE]
+2026-03-25 22:28:43 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:43 | INFO     | [SCHEDULER   ] | END TIME: Wed Mar 25 22:28:43 2026
+2026-03-25 22:28:43 | INFO     | [SCHEDULER   ] | === ETL job complete ===
+2026-03-25 22:28:52 | INFO     | [SCHEDULER   ] | === ETL job starting ===
+2026-03-25 22:28:52 | INFO     | [SCHEDULER   ] | START TIME: Wed Mar 25 22:28:52 2026
+2026-03-25 22:28:52 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [MAIN        ] | [PIPELINE START]
+2026-03-25 22:28:52 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | [EXTRACT]
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | Starting data extraction from CSV sources...
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | Appointments: 5030 rows
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | Billing: 5030 rows
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | Doctors: 50 rows
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | Patients: 5025 rows
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | Treatments: 5025 rows
+2026-03-25 22:28:52 | INFO     | [EXTRACT     ] | All CSV files loaded successfully
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | [TRANSFORM]
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Starting transformation process...
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Appointments: 5030 rows (pre-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Billing: 5030 rows (pre-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (pre-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (pre-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (pre-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Fixing data types...
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Filling missing values...
+2026-03-25 22:28:52 | WARNING  | [TRANSFORM   ] | Dropping remaining nulls...
+2026-03-25 22:28:52 | WARNING  | [TRANSFORM   ] | Appointments: Dropped 444 rows
+2026-03-25 22:28:52 | WARNING  | [TRANSFORM   ] | Billing: Dropped 808 rows
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Transformation complete!
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Appointments: 4586 rows (post-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Billing: 4222 rows (post-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Doctors: 50 rows (post-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Patients: 5025 rows (post-transform)
+2026-03-25 22:28:52 | INFO     | [TRANSFORM   ] | Treatments: 5025 rows (post-transform)
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | [LOAD]
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Starting data load into database...
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Database engine ready: Engine(sqlite:///C:\Users\VICTUS-HP\OneDrive\Documents\fifth_sem\Advance_python_for_datascience\caresight-hospital-analytics\caresight.db)
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Loading Appointments -> appointments (4586 rows)
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Appointments -> 'appointments' loaded
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Loading Billing -> bills (4222 rows)
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Billing -> 'bills' loaded
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Loading Doctors -> doctors (50 rows)
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Doctors -> 'doctors' loaded
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Loading Patients -> patients (5025 rows)
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Patients -> 'patients' loaded
+2026-03-25 22:28:52 | INFO     | [LOAD        ] | Loading Treatments -> treatments (5025 rows)
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Treatments -> 'treatments' loaded
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Load complete!
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | [VERIFY]
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | ==================================================
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Verifying loaded data...
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Appointments preview:
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | appointment_id patient_id doctor_id           appointment_date appointment_time reason_for_visit    status
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |           A001       P034      D009 2023-08-09 00:00:00.000000  15:15:00.000000          Therapy Scheduled
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |           A002       P032      D004 2023-06-09 00:00:00.000000  14:30:00.000000          Therapy   No-Show
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |           A003       P048      D004 2023-06-28 00:00:00.000000  08:00:00.000000     Consultation Cancelled
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |           A004       P025      D006 2023-09-01 00:00:00.000000  09:15:00.000000     Consultation Cancelled
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |           A005       P040      D003 2023-07-06 00:00:00.000000  12:45:00.000000        Emergency   Unknown
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Billing preview:
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | bill_id patient_id treatment_id                  bill_date  amount payment_method payment_status
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |    B001       P034         T001 2023-08-09 00:00:00.000000 3941.97      Insurance        Pending
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |    B002       P032         T002 2023-06-09 00:00:00.000000 4158.44      Insurance           Paid
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |    B003       P048         T003 2023-06-28 00:00:00.000000 3731.55      Insurance           Paid
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |    B004       P025         T004 2023-09-01 00:00:00.000000 4799.86      Insurance         Failed
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |    B005       P040         T005 2023-07-06 00:00:00.000000  582.05    Credit Card        Pending
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Doctors preview:
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | doctor_id first_name last_name specialization  phone_number  years_experience   hospital_branch                        email
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |      D001      David    Taylor    dermatology  8322010158.0              17.0   Westside Clinic dr.david.taylor@hospital.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |      D002       Jane     Davis     Pediatrics  9004382050.0              24.0   Eastside Clinic   dr.jane.davis@hospital.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |      D003       Jane     Smith     Pediatrics  8737740598.0              19.0   Eastside Clinic   dr.jane.smith@hospital.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |      D004      David     Jones     pediatrics           NaN              19.0  Central Hospital  dr.david.jones@hospital.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |      D005      Sarah    Taylor    Dermatology  9118538547.0              26.0  Central Hospital dr.sarah.taylor@hospital.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Patients preview:
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | patient_id first_name last_name  gender              date_of_birth  contact_number      address          registration_date insurance_provider insurance_number                    email
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |       P001      David  Williams       F 1955-06-04 00:00:00.000000    6939585183.0  789 Pine Rd 2022-06-23 00:00:00.000000       WellnessCorp        INS840674  david.williams@mail.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |       P002      Emily     Smith       f 1984-10-12 00:00:00.000000    8228188767.0 321 Maple Dr 2022-01-15 00:00:00.000000        PulseSecure        INS354079     emily.smith@mail.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |       P003      Laura     Jones       M 1977-08-21 00:00:00.000000    8397029847.0 321 Maple Dr 2022-02-07 00:00:00.000000        PulseSecure        INS650929     laura.jones@mail.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |       P004    Michael   Johnson       F 1981-02-20 00:00:00.000000    9019443432.0   123 Elm St 2021-03-02 00:00:00.000000        HealthIndia        INS789944 michael.johnson@mail.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |       P005      David    Wilson Unknown 1960-06-23 00:00:00.000000    7734463155.0   123 Elm St 2021-09-29 00:00:00.000000       MedCare Plus        INS788105    david.wilson@mail.com
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | Treatments preview:
+2026-03-25 22:28:53 | INFO     | [LOAD        ] | treatment_id appointment_id treatment_type        description    cost             treatment_date
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |         T001           A001   Chemotherapy    Basic screening 3941.97 2023-08-09 00:00:00.000000
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |         T002           A002            MRI  Advanced protocol 4158.44 2023-06-09 00:00:00.000000
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |         T003           A003            MRI Standard procedure 3731.55 2023-06-28 00:00:00.000000
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |         T004           A004            MRI    Basic screening 4799.86 2023-09-01 00:00:00.000000
+2026-03-25 22:28:53 | INFO     | [LOAD        ] |         T005           A005            ECG Standard procedure  582.05 2023-07-06 00:00:00.000000
+2026-03-25 22:28:53 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:53 | INFO     | [MAIN        ] | [PIPELINE COMPLETE]
+2026-03-25 22:28:53 | INFO     | [MAIN        ] | ==================================================
+2026-03-25 22:28:53 | INFO     | [SCHEDULER   ] | END TIME: Wed Mar 25 22:28:53 2026
+2026-03-25 22:28:53 | INFO     | [SCHEDULER   ] | === ETL job complete ===
+2026-03-25 22:29:02 | INFO     | [SCHEDULER   ] | Scheduler stopped.

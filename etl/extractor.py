@@ -1,83 +1,43 @@
-import sys
-import os
-
-# ── Make project root importable ───────────────────────────────────────────────
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import pandas as pd
-import sqlalchemy as sa
 from pathlib import Path
 
-# ============================================================
-# ============================================================
-#  CONFIGURATION — Base Path
-BASE_PATH = Path(__file__).resolve().parent
-BASE_PATH = BASE_PATH / "hospital_etl_datasources"
+#logger
+from logging_monitoring.logger import log_section, setup_logger
+logger = setup_logger("extract")
 
-# ============================================================
-#  EXTRACT — Load CSV Files
-# ============================================================
 
-def load_data():
-    df_appoint   = pd.read_csv(f"{BASE_PATH}/appointments_etl.csv")
-    df_bill      = pd.read_csv(f"{BASE_PATH}/billing_etl.csv")
-    df_doctors   = pd.read_csv(f"{BASE_PATH}/doctors_etl.csv")
-    df_patient   = pd.read_csv(f"{BASE_PATH}/patients_etl.csv")
-    df_treatment = pd.read_csv(f"{BASE_PATH}/treatments_etl.csv")
-    return df_appoint, df_bill, df_doctors, df_patient, df_treatment
 
-# ============================================================
-#  PREVIEW — First 5 Rows of Each Table
-# ============================================================
+BASE_PATH = Path(__file__).resolve().parent / "hospital_etl_datasources"
 
-def preview(datasets):
-    print("\n--- Preview ---")
-    for name, df in datasets.items():
-        print(f"\n--- {name} ---")
-        print(df.head())
 
-# ============================================================
-#  SHAPE — Rows x Columns of Each Table
-# ============================================================
 
-def shape(datasets):
-    print("\n--- Shape ---")
-    for name, df in datasets.items():
-        print(f"  {name:<15} {df.shape}")
+def extract_data():
+    log_section(logger, "EXTRACT")
+    logger.info("Starting data extraction from CSV sources...")
 
-# ============================================================
-#  COLUMNS & DTYPES — Side by Side
-# ============================================================
+    df_appoint = pd.read_csv(BASE_PATH / "appointments_etl.csv")
+    logger.info(f"Appointments: {len(df_appoint)} rows")
 
-def columns_dtypes(datasets):
-    print("\n--- Columns & Dtypes ---")
-    for name, df in datasets.items():
-        print(f"\n--- {name} ---")
-        print(f"  {'Column':<30} {'Dtype'}")
-        for col, dtype in df.dtypes.items():
-            print(f"  {col:<30} {dtype}")
+    df_bill = pd.read_csv(BASE_PATH / "billing_etl.csv")
+    logger.info(f"Billing: {len(df_bill)} rows")
 
-# ============================================================
-#  MAIN — Run All Steps
-# ============================================================
+    df_doctors = pd.read_csv(BASE_PATH / "doctors_etl.csv")
+    logger.info(f"Doctors: {len(df_doctors)} rows")
 
-def main():
-    df_appoint, df_bill, df_doctors, df_patient, df_treatment = load_data()
+    df_patient = pd.read_csv(BASE_PATH / "patients_etl.csv")
+    logger.info(f"Patients: {len(df_patient)} rows")
+
+    df_treatment = pd.read_csv(BASE_PATH / "treatments_etl.csv")
+    logger.info(f"Treatments: {len(df_treatment)} rows")
+
+    logger.info("All CSV files loaded successfully")
 
     datasets = {
-        "Appointments" : df_appoint,
-        "Billing"      : df_bill,
-        "Doctors"      : df_doctors,
-        "Patients"     : df_patient,
-        "Treatments"   : df_treatment,
+        "Appointments": df_appoint,
+        "Billing": df_bill,
+        "Doctors": df_doctors,
+        "Patients": df_patient,
+        "Treatments": df_treatment,
     }
 
-    preview(datasets)
-    shape(datasets)
-    columns_dtypes(datasets)
-
-    print("\n Extraction complete!")
-    return df_appoint, df_bill, df_doctors, df_patient, df_treatment
-
-# ── Module-level exports so `from extractor import ...` works ──────────────────
-df_appoint, df_bill, df_doctors, df_patient, df_treatment = main()
+    return datasets

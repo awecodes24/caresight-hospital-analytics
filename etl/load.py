@@ -1,63 +1,54 @@
-import sys
-import os
-
-# ── Make project root importable (must be BEFORE any project imports) ──────────
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-import pandas as pd
-from transform import datasets          # datasets dict built at module level
 from db.connection import get_connection
+import pandas as pd
 
-# ============================================================
-#  TABLE MAP — DataFrame → PostgreSQL Table Name
-# ============================================================
+#  logger
+from logging_monitoring.logger import log_section, setup_logger
+logger = setup_logger("load")
+
 
 TABLE_MAP = {
-    "Appointments" : "appointments",
-    "Billing"      : "bills",
-    "Doctors"      : "doctors",
-    "Patients"     : "patients",
-    "Treatments"   : "treatments",
+    "Appointments": "appointments",
+    "Billing": "bills",
+    "Doctors": "doctors",
+    "Patients": "patients",
+    "Treatments": "treatments",
 }
 
-# ============================================================
-#  LOAD — Save DataFrames into PostgreSQL
-# ============================================================
+
 
 def load_data(datasets):
-    engine = get_connection()
+    log_section(logger, "LOAD")
+    logger.info("Starting data load into database...")
 
-    print("\n--- Loading Tables into PostgreSQL ---")
+    engine = get_connection()
+    logger.info(f"Database engine ready: {engine}")
+
     for name, df in datasets.items():
         table_name = TABLE_MAP[name]
-        df.to_sql(
-            name      = table_name,
-            con       = engine,
-            if_exists = "replace",
-            index     = False
-        )
-        print(f"  {name:<15}  Loaded → '{table_name}' ({len(df)} rows)")
 
-    print("\n✅ Load complete!")
+        try:
+            logger.info(f"Loading {name} -> {table_name} ({len(df)} rows)")
+            df.to_sql(
+                name=table_name,
+                con=engine,
+                if_exists="replace",
+                index=False
+            )
+            logger.info(f"{name} -> '{table_name}' loaded")
+        except Exception as e:
+            logger.error(f"Failed loading {name}: {e}")
+
+    logger.info("Load complete!")
     return engine
 
-# ============================================================
-#  VERIFY — Read Back from PostgreSQL
-# ============================================================
+
 
 def verify_load(engine):
-    print("\n--- Verify Load (first 5 rows) ---")
+    log_section(logger, "VERIFY")
+    logger.info("Verifying loaded data...")
+
     for name, table_name in TABLE_MAP.items():
-        print(f"\n--- {name} ---")
         df = pd.read_sql(f"SELECT * FROM {table_name} LIMIT 5", con=engine)
-        print(df)
-
-# ============================================================
-#  MAIN — Run All Steps
-# ============================================================
-
-def main():
-    engine = load_data(datasets)
-    verify_load(engine)
-
-main()
+        logger.info(f"{name} preview:")
+        for line in df.to_string(index=False).splitlines():
+            logger.info(line)
