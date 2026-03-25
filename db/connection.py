@@ -1,16 +1,10 @@
-
-import psycopg2
+from sqlalchemy import create_engine
 from config.settings import DatabaseConfig
 
 def get_connection():
     config = DatabaseConfig()
-    
-    conn = psycopg2.connect(
-        host=config.host,
-        port=config.port,
-        dbname=config.name,
-        user=config.user,
-        password=config.password
+    engine = create_engine(
+        config.url,
+        connect_args={"host": "localhost"}  # force TCP on Windows
     )
-    
-    return conn
+    return engine
