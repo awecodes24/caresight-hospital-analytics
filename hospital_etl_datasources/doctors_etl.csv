@@ -1,0 +1,51 @@
+doctor_id,first_name,last_name,specialization,phone_number,years_experience,hospital_branch,email
+D001,David,Taylor,dermatology,8322010158.0,17.0,Westside Clinic,dr.david.taylor@hospital.com
+D002,Jane,Davis,Pediatrics,9004382050.0,24.0,Eastside Clinic,dr.jane.davis@hospital.com
+D003,Jane,Smith,Pediatrics,8737740598.0,19.0,  Eastside Clinic,dr.jane.smith@hospital.com
+D004,David,Jones,pediatrics,,unknown,Central Hospital,dr.david.jones@hospital.com
+D005,Sarah,Taylor,Dermatology,9118538547.0,26.0,Central Hospital,dr.sarah.taylor@hospital.com
+D006,Alex,Davis,Pediatrics,6570137231.0,23.0,Central Hospital,dr.alex.davis@hospital.com
+D007,Robert,Davis,Oncology,8217493115.0,26.0,Westside Clinic,dr.robert.davis@hospital.com
+D008,Linda,Brown,dermatology,9069162601.0,5.0,Westside Clinic,dr.linda.brown@hospital.com
+D009,Sarah,Smith,Pediatrics,7387087517.0,26.0,Central Hospital,dr.sarah.smith@hospital.com
+D010,Linda,Wilson,Oncology,6176383634.0,21.0, Eastside Clinic ,
+D011,Alex,Taylor,NEUROLOGY,2181960013.0,15.0,Eastside Clinic  ,dr.alex.taylor11@hospital.com
+D012,Emily,Martinez,Dermatology,,,Southside Health Center,dr.emily.martinez12@hospital.com
+D013,James,Brown,Cardiology,1615594078.0,7.0,Central Hospital,dr.james.brown13@hospital.com
+D014,Alex,Harris,Pediatrics,9593103413.0,19.0,Southside Health Center,dr.alex.harris14@hospital.com
+D015,Alex,Harris,Neurology,2553419283.0,24.0,Northside Medical,
+D016,Linda,Thompson,General Practice,5030564139.0,15.0,Central Hospital,dr.linda.thompson16@hospital.com
+D017,Mark,Johnson,Radiology,2423884969.0,30.0,Northside Medical,dr.mark.johnson17@hospital.com
+D018,Daniel,White,CARDIOLOGY,7101226916.0,,  Eastside Clinic,dr.daniel.white18@hospital.com
+D019,Daniel,Lewis,Radiology,,17.0, Southside Health Center ,dr.daniel.lewis19@hospital.com
+D020,Paul,Taylor,Neurology,8148932528.0,12.0,Southside Health Center,dr.paul.taylor20@hospital.com
+D021,Kevin,Taylor,Orthopedics,,unknown,Northside Medical,dr.kevin.taylor21@hospital.com
+D022,Sarah,Robinson,oncology,8248963834.0,31.0,Eastside Clinic,dr.sarah.robinson22@hospital.com
+D023,Daniel,White,Radiology,1331509839.0,29.0,Southside Health Center,
+D024,Emily,Taylor,Pediatrics,1051834738.0,ERROR,Westside Clinic,
+D025,Robert,Clark,radiology,6311656670.0,31.0,Eastside Clinic,dr.robert.clark25@hospital.com
+D026,Alex,Davis,General Practice,3338726247.0,7.0,Central Hospital,dr.alex.davis26@hospital.com
+D027,Emily,Smith,radiology,801326773.0,7.0,Southside Health Center,dr.emily.smith27@hospital.com
+D028,Daniel,Davis,Oncology,6474687234.0,1.0,Northside Medical,dr.daniel.davis28@hospital.com
+D029,Michael,Davis,Dermatology,,4.0,Central Hospital,dr.michael.davis29@hospital.com
+D030,Sarah,Lewis,Pediatrics,1939909169.0,26.0,Eastside Clinic,dr.sarah.lewis30@hospital.com
+D031,Brian,Martinez,Orthopedics,5346247510.0,14.0,Central Hospital,dr.brian.martinez31@hospital.com
+D032,Paul,Lewis,Pediatrics,3842513542.0,-1,  Westside Clinic,
+D033,Paul,Robinson,Neurology,841241182.0,34.0,Southside Health Center,dr.paul.robinson33@hospital.com
+D034,James,Thomas,Cardiology,4874016400.0,14.0,Central Hospital,dr.james.thomas34@hospital.com
+D035,Mark,Brown,Neurology,8680112805.0,29.0,Eastside Clinic,dr.mark.brown35@hospital.com
+D036,Brian,Robinson,Oncology,450533158.0,9.0, Northside Medical ,dr.brian.robinson36@hospital.com
+D037,Lisa,Lewis,oncology,2602563421.0,11.0,Eastside Clinic  ,dr.lisa.lewis37@hospital.com
+D038,Daniel,Davis,radiology,7543303654.0,13.0, Eastside Clinic ,dr.daniel.davis38@hospital.com
+D039,Sarah,Anderson,ORTHOPEDICS,8501429401.0,ERROR,Southside Health Center,dr.sarah.anderson39@hospital.com
+D040,Helen,Martin,Orthopedics,9816934060.0,28.0,Central Hospital,dr.helen.martin40@hospital.com
+D041,Kevin,Robinson,cardiology,,28.0,Central Hospital,dr.kevin.robinson41@hospital.com
+D042,Daniel,Thomas,oncology,6299468044.0,27.0,Eastside Clinic,dr.daniel.thomas42@hospital.com
+D043,Michael,Martin,orthopedics,7387214895.0,29.0,Northside Medical,dr.michael.martin43@hospital.com
+D044,Sarah,Williams,Neurology,2003791769.0,13.0,Eastside Clinic,dr.sarah.williams44@hospital.com
+D045,Michael,Harris,Radiology,2016328708.0,,Northside Medical,dr.michael.harris45@hospital.com
+D046,Emily,Jones,Radiology,8895798687.0,30.0,Eastside Clinic  ,dr.emily.jones46@hospital.com
+D047,Linda,Garcia,Radiology,4873471434.0,16.0,Central Hospital,dr.linda.garcia47@hospital.com
+D048,Mark,Jackson,Pediatrics,3623166587.0,10.0,Eastside Clinic,dr.mark.jackson48@hospital.com
+D049,Lisa,Davis,Cardiology,9096705466.0,25.0,Northside Medical,dr.lisa.davis49@hospital.com
+D050,Donna,Robinson,CARDIOLOGY,4670656272.0,,Northside Medical,dr.donna.robinson50@hospital.com
