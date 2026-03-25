@@ -5,14 +5,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from etl.extractor import extract_data
 from etl.transform import transform_data
-<<<<<<< HEAD
-from etl.load import load_data as load_to_db, verify_load
-from eda.eda  import run_eda
 
-=======
 from etl.load import load_data, verify_load, load_datasets_from_db
 from eda.eda import run_eda
->>>>>>> d243bdf (transform-eda optimized)
 
 from logging_monitoring.logger import log_section, setup_logger
 
@@ -25,12 +20,8 @@ def main():
     # Extract
     logger.info("Starting extraction...")
     datasets = extract_data()
-<<<<<<< HEAD
-    
-=======
     logger.info("Extraction complete.")
 
->>>>>>> d243bdf (transform-eda optimized)
     # Transform
     logger.info("Starting transformation...")
     datasets = transform_data(datasets)
@@ -44,18 +35,12 @@ def main():
     # Verify
     logger.info("Verifying loaded data...")
     verify_load(engine)
-<<<<<<< HEAD
-    
-    run_eda(datasets)
-    
-=======
     logger.info("Verification complete.")
 
     # EDA
     logger.info("Starting EDA...")
     run_eda(engine)
     logger.info("EDA complete.")
->>>>>>> d243bdf (transform-eda optimized)
 
     log_section(logger, "PIPELINE COMPLETE")
 
