@@ -4,5 +4,6 @@ __pycache__/
 etl.log
 logs/
 *.db
-
+reports/
+*.pyc
 
