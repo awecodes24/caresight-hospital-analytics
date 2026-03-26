@@ -38,7 +38,7 @@ def verify_load(engine):
         for line in df.to_string(index=False).splitlines():
             logger.info(line)
 
-# ← ADD THIS: lets eda.py reload the datasets from DB
+
 def load_datasets_from_db(engine):
     """Read all tables back from the DB into the same datasets dict shape."""
     return {name: pd.read_sql(f"SELECT * FROM {table}", con=engine)

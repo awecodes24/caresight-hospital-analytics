@@ -3,9 +3,7 @@ from logging_monitoring.logger import setup_logger
 
 logger = setup_logger("transform")
 
-# ============================================================
 # TRANSFORM FUNCTION (PIPELINE COMPATIBLE)
-# ============================================================
 
 def check_nulls(datasets, stage=""):
     logger.info(f"Null check {stage}:")
@@ -52,19 +50,16 @@ def drop_high_null_rows(datasets, threshold=0.70):
 def transform_data(datasets):
     logger.info("Starting transformation process...")
 
-    # -------------------------------
+
     # NULL CHECK BEFORE
-    # -------------------------------
     check_nulls(datasets, stage="BEFORE TRANSFORM")
 
-    # -------------------------------
+
     # DROP ROWS WITH >70% NULL WEIGHT
-    # -------------------------------
     datasets = drop_high_null_rows(datasets, threshold=0.70)
 
-    # -------------------------------
+
     # FIX DTYPES
-    # -------------------------------
     logger.info("Fixing data types...")
 
     # Appointments
@@ -107,9 +102,8 @@ def transform_data(datasets):
     datasets["Treatments"]['treatment_date'] = pd.to_datetime(
         datasets["Treatments"]['treatment_date'], errors='coerce')
     
-    # -------------------------------
+
     # FILL MISSING VALUES (CoW-safe)
-    # -------------------------------
     logger.info("Filling missing values...")
 
     datasets["Appointments"] = datasets["Appointments"].fillna({
@@ -160,9 +154,8 @@ def transform_data(datasets):
         )
     )
 
-    # -------------------------------
+  
     # DROP REMAINING NULLS (critical tables only)
-    # -------------------------------
     logger.warning("Dropping remaining nulls in critical tables...")
 
     for name in ["Appointments", "Billing"]:
@@ -172,9 +165,8 @@ def transform_data(datasets):
         if dropped > 0:
             logger.warning(f"  {name}: Dropped {dropped} remaining null rows")
 
-    # -------------------------------
+
     # FINAL NULL CHECK
-    # -------------------------------
     check_nulls(datasets, stage="AFTER TRANSFORM")
 
     for name, df in datasets.items():
