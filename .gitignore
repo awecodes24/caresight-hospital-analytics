@@ -3,6 +3,6 @@ venv/
 __pycache__/
 etl.log
 logs/
-caresight.db
+*.db
 
 
